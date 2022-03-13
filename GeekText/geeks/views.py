@@ -1,4 +1,6 @@
+from urllib import request
 from django.shortcuts import render
+from django.contrib import auth
 import pyrebase
 
 config={
@@ -14,13 +16,13 @@ config={
 
 firebase=pyrebase.initialize_app(config)
 authe = firebase.auth()
-database=firebase.database()
+db=firebase.database()
 
 def home(request):
         #accessing our firebase data and storing it in a variable
-        name = database.child('Data').child('Name').get().val()
-        stack = database.child('Data').child('Stack').get().val()
-        framework = database.child('Data').child('Framework').get().val()
+        name = db.child('Data').child('Name').get().val()
+        stack = db.child('Data').child('Stack').get().val()
+        framework = db.child('Data').child('Framework').get().val()
     
         context = {
             'name':name,
@@ -28,3 +30,6 @@ def home(request):
             'framework':framework
         }
         return render(request, 'Home.html', context)
+
+
+
