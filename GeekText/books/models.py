@@ -19,5 +19,3 @@ class Book(models.Model):
 
     def __str__(self):
         return self.title
-
-myfantasy_list = Book.objects.filter(genre='Fantasy')
