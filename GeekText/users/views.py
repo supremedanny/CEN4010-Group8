@@ -39,16 +39,6 @@ def card_registration_view(request):
             data = serializer.errors
         return Response(data=data)
 
-'''@api_view(['GET', ])
-def account_info(request):
-    #if account does not exist give error
-    try:
-        account =  request.user
-    except Account.DoesNotExist:
-        return Response(status=status.HTTP_404_NOT_FOUND)
-    if request.method == 'GET':
-        serializer = AccountInfoSerializer(account)
-        return Response(serializer.data)'''
 
 #list users api/users/list
 class PropertiesView(generics.ListAPIView):
