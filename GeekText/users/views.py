@@ -110,3 +110,5 @@ def password_change_view(request,username):
             account.save()
             return Response(data=data,status=status.HTTP_200_OK)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+

@@ -64,3 +64,4 @@ class Account(AbstractBaseUser):
 class CreditCard(models.Model):
     cardnumber = models.CharField(max_length=16, unique=True)
     owner = models.ForeignKey(Account,on_delete=models.CASCADE)
+    

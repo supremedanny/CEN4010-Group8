@@ -23,3 +23,4 @@ urlpatterns = [
     path('<username>/creditcard',credit_card_view, name="creditcard"),
 
 ]
+
