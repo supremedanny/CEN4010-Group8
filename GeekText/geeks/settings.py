@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     'webapi',
     'profiles',
     'books',
+    'shopping_cart',
+    'rest_framework'
 
     
 

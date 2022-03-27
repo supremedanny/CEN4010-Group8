@@ -1,10 +1,10 @@
 from django.contrib import admin
-admin.autodiscover()
+from .models import *
 
 # Register your models here.
 
-# Import book model from the directory.
-from .models import Book
+class BookAdmin(admin.ModelAdmin):
+    list_display =('title','Author', 'Price', 'Edition')
 
-# Register our book model in the admin panel.
-admin.site.register(Book)
+
+admin.site.register(Book, BookAdmin)

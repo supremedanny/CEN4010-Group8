@@ -1,22 +1,16 @@
 from django.db import models
-from isbn_field import ISBNField
+from django.contrib.auth.models import User
+
+
+from django.db import models
+
 
 # Create your models here.
-
-# Had to make one of the parts from Feature 4 to begin Feature 1.
-# Allows you to create a book and apply the ISBN, genre, and rating.
-
 class Book(models.Model):
-    title = models.CharField(max_length=150)
-    genre = models.CharField(max_length=50)
-    rating = models.FloatField()
-    sales = models.IntegerField()
-    isbn = ISBNField()
-    on_delete=models.DO_NOTHING,
-    related_name="books"
-
-# This serves to give the labels on the database human-readable names.
-
-    def __str__(self):
-        return self.title
+    title=models.CharField(max_length=200,null=True)
+    Author=models.CharField(max_length=200,null=True)
+    Price=models.IntegerField()
+    Edition=models.IntegerField()
  
+    def str(self):
+        return str(self.title)
