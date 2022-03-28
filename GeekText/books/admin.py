@@ -1,10 +1,15 @@
 from django.contrib import admin
-from .models import *
+from books.models import Genre, Book
 
 # Register your models here.
 
+# Register our book model in the admin panel.
+
 class BookAdmin(admin.ModelAdmin):
-    list_display =('title','Author', 'Price', 'Edition')
+    list_display = ('title', 'genre', 'sales', 'rating')
 
+    def sales(self, obj):
+        return obj.sales
 
-admin.site.register(Book, BookAdmin)
+admin.site.register(Genre)
+admin.site.register(Book)

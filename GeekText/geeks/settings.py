@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     'profiles',
     'books',
     'shopping_cart',
-    'rest_framework'
+    'rest_framework',
+    'users',
 
     
 
