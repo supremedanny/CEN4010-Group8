@@ -1,7 +1,7 @@
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
-from users.serializers import RegistrationSerializer, AccountInfoSerializer, AccountInfoChangerSerializer,PasswordChangerSerializer, CreditCardSerializer,CardRegistrationSerializer
+from users.serializers import PasswordChangeSerializer, RegistrationSerializer, AccountInfoSerializer, AccountInfoChangeSerializer,CreditCardSerializer,CardRegistrationSerializer
 from users.models import Account, CreditCard
 from rest_framework.views import APIView
 from rest_framework.generics import UpdateAPIView, ListAPIView
@@ -38,7 +38,6 @@ def card_registration_view(request):
         else:
             data = serializer.errors
         return Response(data=data)
-
 
 #list users api/users/list
 class PropertiesView(generics.ListAPIView):
@@ -91,7 +90,7 @@ def credit_card_view(request,username):
 def password_change_view(request,username):
     account = Account.objects.get(username=username)
     if request.method == 'PUT':
-        serializer = PasswordChangerSerializer(account,data=request.data)
+        serializer = PasswordChangeSerializer(account,data=request.data)
         data={}
         if serializer.is_valid():
             serializer.save()

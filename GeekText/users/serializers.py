@@ -50,8 +50,8 @@ class PasswordChangeSerializer(serializers.ModelSerializer):
     old_password = serializers.CharField(required=True)
     new_password = serializers.CharField(required=True)
 
-#still working on this
-"""
+#This is for the POST part of the API so user can register/create 
+#their credit card
 class CardRegistrationSerializer(serializers.ModelSerializer):
     class Meta:
         model = CreditCard
@@ -63,11 +63,11 @@ class CardRegistrationSerializer(serializers.ModelSerializer):
             owner = self.validated_data['owner']    
         )
         creditcard.save()
-        return creditcard"""
+        return creditcard
+
 #still working on this        
-"""
 class CreditCardSerializer(serializers.ModelSerializer):
     class Meta:
         model = CreditCard
-        fields = ['id', 'cardnumber', 'owner']"""
+        fields = ['id', 'cardnumber', 'owner']
 
