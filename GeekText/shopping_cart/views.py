@@ -7,16 +7,25 @@ from django.contrib import auth
 from rest_framework import viewsets, status
 from rest_framework.decorators import action
 from rest_framework.response import Response
-from .models import User, Cart
+from .models import Cart
 from .serializers import UserSerializer, CartSerializer
 
 class UserViewSet(viewsets.ModelViewSet):
-    queryset = User.objects.all().order_by('id')
+    #queryset = User.objects.all().order_by('id')
     serializer_class = UserSerializer
 
 
 class CartViewSet(viewsets.ModelViewSet):
-    queryset = Cart.objects.all().order_by('id')
-    serializer_class = CartSerializer
+    def cartItems(request):
+        if request.method == ('GET'):
+            queryset = Cart.objects.all()
+            serializer_class = CartSerializer
 
+            return queryset
 
+    def deleteItem(request):
+        if request.method == ('DELETE'):
+            queryset = Cart.objects.all().order_by('id')
+            serializer_class = CartSerializer
+
+            return queryset

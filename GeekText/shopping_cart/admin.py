@@ -1,5 +1,8 @@
 from django.contrib import admin
-from .models import User, Cart
+from .models import Cart
 
-admin.site.register(User)
-admin.site.register(Cart)
+class adminShoppingCart(admin.ModelAdmin):
+    list_display = ('books')
+
+
+admin.site.register(Cart,adminShoppingCart)
