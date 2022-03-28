@@ -60,7 +60,7 @@ class CardView(ListAPIView):
 def account_update_view(request, username):
     account = Account.objects.get(username=username)
     if request.method == 'PUT':
-        serializer = AccountInfoChangerSerializer(account, data = request.data)
+        serializer = AccountInfoChangeSerializer(account, data = request.data)
         data={}
         if serializer.is_valid():
             serializer.save()
