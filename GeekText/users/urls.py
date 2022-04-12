@@ -17,10 +17,10 @@ urlpatterns = [
     path('cardregister',card_registration_view, name="cardregister"),
     path('list', PropertiesView.as_view(), name="list"),
     path('cardlist', CardView.as_view(), name="cardlist"),
-    path('<username>/update',account_update_view, name="update"),
-    path('<username>/passwordchange',password_change_view, name="change"),
-    path('<username>/', account_info_view, name = "info"),
-    path('<username>/creditcard',credit_card_view, name="creditcard"),
+    path('<email>/update', account_update_view, name="update"),
+    path('<email>/passwordchange', password_change_view, name="change"),
+    path('<email>/', account_info_view, name = "info"),
+    path('<email>/creditcard', credit_card_view, name="creditcard"),
 
 ]
 

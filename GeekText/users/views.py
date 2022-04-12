@@ -3,12 +3,11 @@ from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from users.serializers import PasswordChangeSerializer, RegistrationSerializer, AccountInfoSerializer, AccountInfoChangeSerializer,CreditCardSerializer,CardRegistrationSerializer
 from users.models import Account, CreditCard
-from rest_framework.views import APIView
-from rest_framework.generics import UpdateAPIView, ListAPIView
+from rest_framework.generics import ListAPIView
 from rest_framework import generics
-from rest_framework.filters import SearchFilter, OrderingFilter
-from rest_framework.pagination import PageNumberPagination
+from rest_framework.filters import SearchFilter
 
+#to register a user
 @api_view(['POST', ])
 def registration_view(request):
     if request.method == 'POST':
@@ -16,15 +15,17 @@ def registration_view(request):
         data={}
         if serializer.is_valid():
             account = serializer.save()
-            data['response'] = "New user created within database"
+            data['response'] = "New user created!"
             data['email'] = account.email
-            data['username'] = account.username
+        #    data['username'] = account.username
             data['address'] = account.address
             data['name'] = account.name
         else:
             data = serializer.errors
         return Response(data)
 
+#to register a card to a user
+#unfortunately, I could not do it by the name of the user. 
 @api_view(['POST', ])
 def card_registration_view(request):
     if request.method == 'POST':
@@ -32,7 +33,7 @@ def card_registration_view(request):
         data = {}
         if serializer.is_valid():
             creditcard = serializer.save()
-            data['response'] = "New Credit Card entered in database"
+            data['response'] = "New Credit Card created!"
             data['cardnumber'] = creditcard.cardnumber
             return Response(data=data)
         else:
@@ -56,39 +57,42 @@ class CardView(ListAPIView):
     filter_backends = (SearchFilter, )
     search_fields = ['owner__username']
 
+#change users account information
 @api_view(['PUT', ])
-def account_update_view(request, username):
-    account = Account.objects.get(username=username)
+def account_update_view(request, email):
+    account = Account.objects.get(email=email)
     if request.method == 'PUT':
         serializer = AccountInfoChangeSerializer(account, data = request.data)
         data={}
         if serializer.is_valid():
             serializer.save()
             data['response'] = 'Updated'
-            data['username'] = account.username
+            data['email'] = account.email
             data['address'] = account.address
             data['name'] = account.name
             return Response(data=data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+#to show user's account information
 @api_view(['GET', ])
-def account_info_view(request,username):
-    account = Account.objects.get(username=username)
+def account_info_view(request,email):
+    account = Account.objects.get(email=email)
     if request.method == 'GET':
         serializer = AccountInfoSerializer(account)
         return Response(serializer.data)
 
+#to show user's credit cards linked to them
 @api_view(['GET', ])
-def credit_card_view(request,username):
-    owner = CreditCard.objects.get(username=username)
+def credit_card_view(request,email):
+    owner = CreditCard.objects.get(email=email)
     if request.method == 'GET':
         serializer = CreditCardSerializer(owner,data = request.data)
         return Response(serializer.data)
 
-
+#to change user's password
 @api_view(['PUT', ])
-def password_change_view(request,username):
-    account = Account.objects.get(username=username)
+def password_change_view(request,email):
+    account = Account.objects.get(email=email)
     if request.method == 'PUT':
         serializer = PasswordChangeSerializer(account,data=request.data)
         data={}
