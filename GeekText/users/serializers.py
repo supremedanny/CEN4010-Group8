@@ -1,17 +1,16 @@
-import email
 from rest_framework import serializers
 from users.models import Account, CreditCard
 
-#Still need to make email the username
+#Uses user email
 class RegistrationSerializer(serializers.ModelSerializer):  
     class Meta:
         model = Account
-        fields = ['email','username','password','address','name']
+        fields = ['email','password','address','name']
        
     def save(self):
         account = Account(
             email = self.validated_data['email'],
-            username = self.validated_data['username'],
+           # username = self.validated_data['username'],
         )
         password = self.validated_data['password']
         account.address = self.validated_data['address']
@@ -24,23 +23,17 @@ class RegistrationSerializer(serializers.ModelSerializer):
 class AccountInfoSerializer(serializers.ModelSerializer):
     class Meta:
         model = Account
-        fields = ['idd','username','address','name','email']
+        fields = ['idd','name','email', 'address']
 
-#This is for the PUT part of the API
-#I believe needs work still. 
+#This is for the PUT part of the API so user can change name and address
 class AccountInfoChangeSerializer(serializers.ModelSerializer):
     class Meta:
         model = Account
-        fields = ['username','address','name']
+        fields = ['name','address']
         
-    def save(self):
-        account = Account(
-           username = self.validated_data['username'],
-        )
-        account.address = self.validated_data['address']
-        account.name = self.validated_data['name']
-        account.save()
-        return account
+    address = serializers.CharField
+    name = serializers.CharField
+       
 
 #This is for the PUT part of the API so user can change password
 class PasswordChangeSerializer(serializers.ModelSerializer):
@@ -65,9 +58,11 @@ class CardRegistrationSerializer(serializers.ModelSerializer):
         creditcard.save()
         return creditcard
 
-#still working on this        
+#to POST/GET in JSON
+# ID shows the primary key, card number shows the credit card number
+# and name shows the user's name that they used when creating an account       
 class CreditCardSerializer(serializers.ModelSerializer):
     class Meta:
         model = CreditCard
-        fields = ['id', 'cardnumber', 'owner']
+        fields = ['id', 'cardnumber', 'name']
 

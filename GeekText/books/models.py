@@ -1,6 +1,8 @@
 from django.db import models
 from isbn_field import ISBNField
 
+#from GeekText.shopping_cart.models import Cart
+
 # Create your models here.
 
 # Had to make one of the parts from Feature 4 to begin Feature 1.
@@ -21,8 +23,8 @@ class Book(models.Model):
     isbn = ISBNField()
     on_delete=models.DO_NOTHING,
     related_name="books"
+    idd = models.IntegerField(primary_key=True)
+    
+    #cart = models.ForeignKey(Cart, on_delete=models.SET_NULL, null=True, blank=True)
 
 # This serves to give the labels on the database human-readable names.
-
-    def __str__(self):
-        return self.title
