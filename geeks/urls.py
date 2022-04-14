@@ -23,5 +23,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
    # path('', include("webapi.urls")),
     path('home', views.home),
-    path('book', include('books.urls'))
+    path('accounts/', include('profiles.urls'))
 ]
