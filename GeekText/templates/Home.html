@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Welcome</title>
+	<style>
+		body{
+			background-image: url();
+		}
+		div{
+		position:absolute;
+		right:10px;
+		top:5px;
+		}
+		p{
+			font-size: 32px;
+		}
+		button{
+			background-color: rgba(7, 179, 185, 0.753);
+			color: white;
+			width: 70px;
+			height: 40px;
+			border: none;
+			border-radius: 5px;
+		}
+	</style>
+</head>
+<body> HOME
+<br><br>
+<div>
+<button type="button" onclick="location.href='{% url 'logout' %}' ">Logout</button>
+</div>
+</body>
+</html>
