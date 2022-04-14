@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>BOOK RATING</h2>
+
+<p>Enter the ISBN, your username, comment and the rating </p>
+<p>(1=Poor, 2= Below Average, 3=Statisfactory, 4=Above Average, 5= Excellent):</p>
+
+<form action="post">
+  <p>
+  <label for="ISBN">ISBN:</label><br>
+  <input type="text" id="ISBN" name="ISBN"><br>
+	</p>
+  <p>
+  <label for="username">Username:</label><br>
+  <input type="text" id="username" name="username"><br>
+	</p>
+  <p>
+  <label for="Rating">Rating from 1 to 5:</label><br>
+  <select id="rating" name="rating">
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+    <option value="4">4</option>
+    <option value="5">5</option>
+  </select>
+	</p>
+  <p>  
+  <label for="Comment">Enter your comment</label><br>
+  <input type="Textarea" id="comment" name="comment"><br><br>
+  	</p>
+  <input type="submit" value="Submit">
+</form>
+
+<p></p>
+
+</body>
+</html>
+

@@ -1,3 +1,5 @@
+from django.urls import path
+
 """geeks URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
@@ -22,6 +24,7 @@ from . import views
 urlpatterns = [
     path('admin/', admin.site.urls),
    # path('', include("webapi.urls")),
-    path('home', views.home),
-    path('api/users/', include('users.urls'))
+    #path('home/', home_view),
+    path('api/users/', include('users.urls')),
+    path('viewratings/', include('rating.urls')),
 ]

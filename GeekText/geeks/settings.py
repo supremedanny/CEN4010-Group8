@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'webapi',
     'users',
     'books',
+    'rating',
 
     
 
