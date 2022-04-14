@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+</style>
+</head>
+<body>
+
+<h1>List of Average Book Ratings</h1>
+<table>
+<tr>
+	<th> ISBN</th>
+	<th> Average Rating</th>	
+</tr>	
+<div class="avgrating">
+{%for avgrating in avgrating%}
+	<div class="avgrating">
+	<tr>
+		<td>{{avgrating.ISBN}}</td>
+		<td>{{avgrating.avgrate}}</td>
+	</tr>
+	</div>
+{%endfor%}
+</div>
+</table>
+</body>
+</html>
