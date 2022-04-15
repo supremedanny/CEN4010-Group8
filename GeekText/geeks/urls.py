@@ -27,4 +27,5 @@ urlpatterns = [
     #path('home/', home_view),
     path('api/users/', include('users.urls')),
     path('viewratings/', include('rating.urls')),
+    path('', include('books.urls')),
 ]
