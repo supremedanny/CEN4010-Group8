@@ -1,3 +1,9 @@
 from django.contrib import admin
+from .models import Cart
 
-# Register your models here.
+'''
+class adminShoppingCart(admin.ModelAdmin):
+    list_display = ('books')
+'''
+
+admin.site.register(Cart)
