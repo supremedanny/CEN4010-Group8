@@ -13,6 +13,6 @@ app_name = 'shopping_cart'
 urlpatterns = [
     path('', CartViewSet.as_view(), name = 'cart'),
     path('create_cart',create_Cart, name="create_cart"),
-    path('cart_upate',cart_update, name="cart_update"),
-    path('deleteFromCart',deleteFromCart, name="deleteFromCart"),
+    path('cart_update',cart_update, name="cart_update"),
+    path('deleteFromCart/<int:item_id>/',deleteFromCart, name="deleteFromCart"),
 ]

@@ -8,6 +8,9 @@ from rest_framework.decorators import api_view
 from rest_framework import generics
 from rest_framework import status
 from django.http import HttpResponse
+from django.views.decorators.csrf import csrf_exempt
+from django.http import JsonResponse
+from rest_framework.parsers import JSONParser
 
 from books.models import Book
 from users.models import Account
@@ -21,21 +24,24 @@ class CartViewSet(generics.ListAPIView):
     permission_classes = (permissions.IsAuthenticated,)
     queryset = Cart.objects.all()
     serializer_class = CartSerializer
-
+@csrf_exempt
 
 @api_view(['POST', ])
 def create_Cart(request):
+    
     if request.method == 'POST':
-        serializer = CartSerializer(data=request.data)
-        data={}
+        data= JSONParser().parse(request)
+        serializer = CartSerializer(data=data)
+        
         if serializer.is_valid():
             createdcart = serializer.save()
             data['response'] = "Cart created within database"
             data['user'] = createdcart.user
             data['item'] = createdcart.item
-        else:
-             data = serializer.errors
-        return Response(data=data)
+            return JsonResponse(serializer.data, status = 201)
+        
+        return JsonResponse(serializer.errors, status = 400)
+
 
 @api_view(['PUT', ])
 def cart_update(request, email):
@@ -51,9 +57,9 @@ def cart_update(request, email):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(['DELETE'])
-def deleteFromCart(request, Book):
+def deleteFromCart(request, item_id):
     if request.method == 'DELETE':
-        Cart.objects.filter(Book = Book).delete()
+        Cart.objects.filter(item_id = item_id).delete()
         return HttpResponse(status = 204)
 
 

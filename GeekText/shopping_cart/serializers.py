@@ -11,18 +11,10 @@ class UserSerializer(serializers.ModelSerializer):
 
 #This is for the GET API call
 class CartSerializer(serializers.ModelSerializer):
-    created_by = serializers.CurrentUserDefault()
+   # created_by = serializers.CurrentUserDefault()
     class Meta:
         model = Cart
         fields = ['user', 'item']
-
-    def save(self):
-        cart = Cart(
-            user = self.validated_data['user'],
-            item = self.validated_data['item']
-        )
-        cart.save()
-        return cart
 
 class CartUpdateSerializer(serializers.ModelSerializer):
     class Meta:

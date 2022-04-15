@@ -46,30 +46,4 @@ class Cart(models.Model):
     
     
     
-    def __str__(self):
-        return "{} - {}".format(self.user,
-                                               self.item,)
 
-
-'''
-shopping_cart_id = partial(get_random_string, 10)
-
-class Cart(models.Model):
-    user = models.ForeignKey(Account, on_delete=models.CASCADE)
-
-    def __str__(self):
-        return "Cart: " + self.user.username
-
-@receiver(post_save, sender=settings.AUTH_USER_MODEL, dispatch_uid="create_shopping_cart_for_user")
-def create_shopping_cart_for_user(sender, instance=None, created=False, **kwargs):
-    if created:
-        Cart.objects.create(user=instance)
-
-class ShoppingCartItems(models.Model):
-    cart = models.ForeignKey(Cart, on_delete=models.CASCADE)
-    item_id = models.ForeignKey(Book, on_delete=models.CASCADE)
-    quantity = models.IntegerField(default=1)
-
-    def __str__(self):
-        return self.cart.user.username + ": " + self.item_id.title
-'''
