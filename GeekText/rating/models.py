@@ -21,12 +21,9 @@ class Rating(models.Model):
     timestamp = models.DateTimeField(auto_now_add = True)
     on_delete = models.DO_NOTHING,
     related_name = "rating"
-
+    def __str__(self):
+        return self.ISBN
+        #to see the ISBN on each post
 
 class Meta:
     verbose_name_plural = "ratings"
-
-
-def __str__(self):
-    return f'{self.ISBN}' #to see the ISBN on each post
-
